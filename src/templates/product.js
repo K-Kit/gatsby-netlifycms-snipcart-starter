@@ -58,12 +58,12 @@ ProductTemplate.propTypes = {
   helmet: PropTypes.object,
 }
 
-const BlogPost = ({ data }) => {
+const Product = ({ data }) => {
   const { markdownRemark: post } = data
 
   return (
     <Layout>
-      <BlogPostTemplate
+      <ProductTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
@@ -83,13 +83,13 @@ const BlogPost = ({ data }) => {
   )
 }
 
-BlogPost.propTypes = {
+Product.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
   }),
 }
 
-export default BlogPost
+export default Product
 
 export const pageQuery = graphql`
   query ProductById($id: String!) {
@@ -97,7 +97,6 @@ export const pageQuery = graphql`
       id
       html
       frontmatter {
-        id
         date(formatString: "MMMM DD, YYYY")
         title
         description
