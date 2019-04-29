@@ -92,11 +92,12 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
+  query ProductById($id: String!) {
     markdownRemark(id: { eq: $id }) {
       id
       html
       frontmatter {
+        id
         date(formatString: "MMMM DD, YYYY")
         title
         description
