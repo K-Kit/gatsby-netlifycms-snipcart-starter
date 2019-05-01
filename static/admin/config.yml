@@ -26,7 +26,7 @@ collections:
   label: "Product"
   folder: "src/pages/product"
   create: true
-  identifier_field: id
+  identifier_field: name
   fields:
   - {label: "Template Key", name: "templateKey", widget: "hidden", default: "product"}
   - {label: "ID", name: "id", widget: "string"}
@@ -39,6 +39,7 @@ collections:
     widget: "list"
     field: {label: Image, name: image, widget: image}
   - {label: "Tags", name: "tags", widget: "list"}
+  - {label: "Origin_link", name: "origin_link", widget: "string"}
 
 - name: "pages"
   label: "Pages"
