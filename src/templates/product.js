@@ -34,10 +34,11 @@ export const ProductTemplate = (
             <p>${price}</p>
             <button
               className="snipcart-add-item"
-              data-item-id={id}
+              data-item-id={id.toString()}
               data-item-name={name}
               data-item-price={price}
-              data-item-description={description.toString()}>
+              data-item-url={"https://cms-snipcart.netlify.com/product/3"}
+              data-item-description="Some fresh bacon">
               Buy bacon
             </button>
             {/*<PostContent content={content} />*/}
