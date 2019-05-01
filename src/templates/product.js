@@ -6,6 +6,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Img from 'gatsby-image'
+import $ from 'jQuery'
 
 export const ProductTemplate = (
   {
@@ -37,7 +38,7 @@ export const ProductTemplate = (
               data-item-id={id.toString()}
               data-item-name={name}
               data-item-price={price}
-              data-item-url={"https://cms-snipcart.netlify.com/product/${name}"}
+              data-item-url={"https://cms-snipcart.netlify.com/product/Waterproof%20Multi-Functional%20Backpack/"}
               data-item-description="todo">
               Buy Now
             </button>
