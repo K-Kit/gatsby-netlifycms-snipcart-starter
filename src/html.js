@@ -14,7 +14,7 @@ export default function HTML(props) {
         {props.headComponents}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
-        <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="YzRkZDU4NTUtMzQ1MC00NTA3LWIzNDUtNTNiZjI0MmMyYTg3NjM2OTA2OTkzMDk5MTg4NTA5"></script>
+        <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="YTJhODQ0ZmQtZWQxZi00ZjUxLTg1MWItOTMyMDAzZDQ0MzMzNjM2OTA2OTkzMDk5MTg4NTA5"></script>
 
         <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" type="text/css" rel="stylesheet" />
       </head>
