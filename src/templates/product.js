@@ -109,6 +109,7 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         description
+        id
         tags
         name
         price
