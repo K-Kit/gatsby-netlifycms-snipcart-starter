@@ -37,7 +37,7 @@ export const ProductTemplate = (
               data-item-id={id.toString()}
               data-item-name={name}
               data-item-price={price}
-              data-item-url={"https://cms-snipcart.netlify.com/product/3"}
+              data-item-url={"https://cms-snipcart.netlify.com/product/${name}"}
               data-item-description="Some fresh bacon">
               Buy bacon
             </button>
