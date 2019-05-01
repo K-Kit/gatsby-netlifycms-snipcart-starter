@@ -38,11 +38,16 @@ export const ProductTemplate = (
               data-item-name={name}
               data-item-price={price}
               data-item-url={"https://cms-snipcart.netlify.com/product/${name}"}
-              data-item-description="Some fresh bacon">
-              Buy bacon
+              data-item-description="todo">
+              Buy Now
             </button>
             {/*<PostContent content={content} />*/}
             <Img fluid={featuredimage.childImageSharp.fluid} />
+            {galleryImages && galleryImages.map(image => {
+              return (
+                <Img fluid={image.childImageSharp.fluid} />
+              )
+            })}
             {/*{tags && tags.length ? (*/}
               {/*<div style={{ marginTop: `4rem` }}>*/}
                 {/*<h4>Tags</h4>*/}
