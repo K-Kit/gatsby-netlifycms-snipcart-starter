@@ -43,7 +43,7 @@ export const ProductTemplate = (
               Buy Now
             </Button>
             {/*<PostContent content={content} />*/}
-            <Img fluid={featuredimage.childImageSharp.fluid} />
+            {featuredimage && <Img fluid={featuredimage.childImageSharp.fluid} />}
             {galleryImages && galleryImages.map(image => {
               return (
                 <Img fluid={image.childImageSharp.fluid} />
@@ -110,16 +110,13 @@ export default Product
 export const pageQuery = graphql`
   query ProductById($id: String!) {
     markdownRemark(id: { eq: $id }) {
-      id
-      html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         description
         id
         tags
-        name
-        price
-        galleryImages {
+        title
+        images {
           childImageSharp{
             fluid {
               ...GatsbyImageSharpFluid
