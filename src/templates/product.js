@@ -32,15 +32,15 @@ export const ProductTemplate = (
             </h1>
             <p>{description}</p>
             <p>${price}</p>
-            <button
+            <Button
               className="snipcart-add-item"
               data-item-id={id.toString()}
               data-item-name={name}
               data-item-price={price}
-              data-item-url={"https://cms-snipcart.netlify.com/product/"+encodeURI(name)}
+              data-item-url={"localhost:8000/"}
               data-item-description="todo">
               Buy Now
-            </button>
+            </Button>
             {/*<PostContent content={content} />*/}
             <Img fluid={featuredimage.childImageSharp.fluid} />
             {galleryImages && galleryImages.map(image => {
