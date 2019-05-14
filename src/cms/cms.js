@@ -1,4 +1,5 @@
 import CMS from 'netlify-cms'
+import '@material-ui/core'
 
 import AboutPagePreview from './preview-templates/AboutPagePreview'
 import BlogPostPreview from './preview-templates/BlogPostPreview'

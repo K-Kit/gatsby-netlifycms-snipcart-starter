@@ -9,6 +9,7 @@ import Img from '../components/PreviewCompatibleImage'
 import {Grid} from '@material-ui/core'
 import Button from "@material-ui/core/Button/Button";
 import styled from "styled-components"
+import Paper from "@material-ui/core/Paper/Paper";
 
 
 export const ProductTemplate = (
@@ -28,18 +29,16 @@ export const ProductTemplate = (
   return (
     <section className="section">
       {helmet || ''}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
             {/*<PostContent content={content} />*/}
+            <Paper>
             <Grid container>
-              <Grid item container spacing={16} xs={12} lg={6} alignItems={"center"}>
-                <Grid item container direction={"row"}  xs={2} spacing={8}
+              <Grid container item spacing={16} xs={12} lg={6} alignItems={"center"}>
+                <Grid container item  xs={2} spacing={8}
                 >
                   {/* todo add select on hover */}
                   {images && images.map((image, i) => {
                     return (
-                      <Grid item xs onClick={() => setSelectedImage(image)}>
+                      <Grid item xs={12} onClick={() => setSelectedImage(image)}  >
                         <Img imageInfo={image} />
                       </Grid>
                     )
@@ -73,6 +72,7 @@ export const ProductTemplate = (
 
               {/*todo add related products, categories, tags, reviews*/}
             </Grid>
+            </Paper>
             {/*{tags && tags.length ? (*/}
               {/*<div style={{ marginTop: `4rem` }}>*/}
                 {/*<h4>Tags</h4>*/}
@@ -85,9 +85,6 @@ export const ProductTemplate = (
                 {/*</ul>*/}
               {/*</div>*/}
             {/*) : null}*/}
-          </div>
-        </div>
-      </div>
     </section>
   )
 }
