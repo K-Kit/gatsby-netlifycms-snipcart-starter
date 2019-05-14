@@ -1,54 +1,78 @@
-import React from 'react'
+import React, { useState } from "react";
 import PropTypes from 'prop-types'
 import { kebabCase } from 'lodash'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
-import Img from 'gatsby-image'
+import Img from '../components/PreviewCompatibleImage'
+import {Grid} from '@material-ui/core'
 import Button from "@material-ui/core/Button/Button";
+import styled from "styled-components"
+
 
 export const ProductTemplate = (
   {
     id,
-    name,
-    price,
+    title,
     description,
     tags,
     featuredimage,
+    variants,
+    options,
+    images,
     helmet,
-    galleryImages,
-    contentComponent
+    selectedImage, setSelectedImage
   }) => {
-  const PostContent = contentComponent || Content
-  console.log('name ${name}', name)
+  let price = 99.99
   return (
     <section className="section">
       {helmet || ''}
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {name}
-            </h1>
-            <p>{description}</p>
-            <p>${price}</p>
-            <Button
-              className="snipcart-add-item"
-              data-item-id={id}
-              data-item-name={name}
-              data-item-price={price}
-              data-item-url={"localhost:8000/"}
-              data-item-description="todo">
-              Buy Now
-            </Button>
             {/*<PostContent content={content} />*/}
-            {featuredimage && <Img fluid={featuredimage.childImageSharp.fluid} />}
-            {galleryImages && galleryImages.map(image => {
-              return (
-                <Img fluid={image.childImageSharp.fluid} />
-              )
-            })}
+            <Grid container>
+              <Grid item container spacing={16} xs={12} lg={6} alignItems={"center"}>
+                <Grid item container direction={"row"}  xs={2} spacing={8}
+                >
+                  {/* todo add select on hover */}
+                  {images && images.map((image, i) => {
+                    return (
+                      <Grid item xs onClick={() => setSelectedImage(image)}>
+                        <Img imageInfo={image} />
+                      </Grid>
+                    )
+                  })}
+                </Grid>
+                {/* TODO spotlight: add onclick lightbox */}
+                <Grid item lg xs={12} lg={10}>
+                  {images && images.length && <Img imageInfo={selectedImage} />}
+                </Grid>
+              </Grid>
+
+              <Grid container item lg={6} xs={12}>
+                <h1>{title}</h1>
+                {/*
+                  variant options
+                  price datas for variant
+                */}
+                <p>
+                  {description}
+                </p>
+                <Button
+                  className="snipcart-add-item"
+                  data-item-id={id}
+                  data-item-name={title}
+                  data-item-price={price}
+                  data-item-url={"localhost:8000/"}
+                  data-item-description="todo">
+                  Buy Now
+                </Button>
+              </Grid>
+
+              {/*todo add related products, categories, tags, reviews*/}
+            </Grid>
             {/*{tags && tags.length ? (*/}
               {/*<div style={{ marginTop: `4rem` }}>*/}
                 {/*<h4>Tags</h4>*/}
@@ -78,12 +102,13 @@ ProductTemplate.propTypes = {
 const Product = ({ data }) => {
   const { markdownRemark: post } = data
   const item = post.frontmatter
+
+  const [selectedImage, setSelectedImage] = useState(item.images[0]);
   return (
     <Layout>
       <ProductTemplate
-        content={post.html}
-        contentComponent={HTMLContent}
-        description={item.description}
+        selectedImage={selectedImage}
+        setSelectedImage={setSelectedImage}
         helmet={
           <Helmet titleTemplate="%s | Blog">
             <title>{`${item.title}`}</title>
@@ -111,27 +136,45 @@ export const pageQuery = graphql`
   query ProductById($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        description
         id
-        tags
         title
-        images {
+        description
+        tags
+
+        featuredimage{
           childImageSharp{
             fluid {
               ...GatsbyImageSharpFluid
             }
           }
         }
-        featuredimage{
+
+        variants {
+          skuAttr
+          pricing
+          discount
+        }
+        options {
+          title
+          options {
+            optionId
+            text
+            src {
+              id
+              childImageSharp{
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+        images {
           childImageSharp{
             fluid {
               ...GatsbyImageSharpFluid
             }
-            
-          
-        }
-        
+          }
         }
       }
     }
