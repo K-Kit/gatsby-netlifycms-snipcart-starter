@@ -6,6 +6,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Img from 'gatsby-image'
+import Button from "@material-ui/core/Button/Button";
 
 export const ProductTemplate = (
   {
@@ -34,7 +35,7 @@ export const ProductTemplate = (
             <p>${price}</p>
             <Button
               className="snipcart-add-item"
-              data-item-id={id.toString()}
+              data-item-id={id}
               data-item-name={name}
               data-item-price={price}
               data-item-url={"localhost:8000/"}
