@@ -10,8 +10,29 @@ import {Grid} from '@material-ui/core'
 import Button from "@material-ui/core/Button/Button";
 import styled from "styled-components"
 import Paper from "@material-ui/core/Paper/Paper";
+import {
+  space,
+  color,
+  width,
+  fontSize,
+  display,
+  flex
+} from 'styled-system'
 
 
+const Box = styled.div`
+  ${color}
+  ${width}
+  ${display}
+  ${flex}
+  justify-content: center;
+
+`;
+const Thumbnail = styled.a`
+${width};
+  width: 56px;
+  justify-content: center;
+`
 export const ProductTemplate = (
   {
     id,
@@ -27,65 +48,53 @@ export const ProductTemplate = (
   }) => {
   let price = 99.99
   return (
-    <section className="section">
+    <Grid container>
       {helmet || ''}
             {/*<PostContent content={content} />*/}
-            <Paper>
-            <Grid container>
-              <Grid container item spacing={16} xs={12} lg={6} alignItems={"center"}>
-                <Grid container item  xs={2} spacing={8}
+            <Grid item xs={12} md={6} spacing={24}>
+                <Box bg={"red"}
+                     width={[1,1,1, 1/2]}
+                     display={"inline-block"}
+
                 >
+                  <Box m={2} >
+                    {images && images.length && <Img imageInfo={selectedImage} />}
+                  </Box>
                   {/* todo add select on hover */}
-                  {images && images.map((image, i) => {
-                    return (
-                      <Grid item xs={12} onClick={() => setSelectedImage(image)}  >
-                        <Img imageInfo={image} />
-                      </Grid>
-                    )
-                  })}
-                </Grid>
-                {/* TODO spotlight: add onclick lightbox */}
-                <Grid item lg xs={12} lg={10}>
-                  {images && images.length && <Img imageInfo={selectedImage} />}
-                </Grid>
-              </Grid>
-
-              <Grid container item lg={6} xs={12}>
-                <h1>{title}</h1>
-                {/*
-                  variant options
-                  price datas for variant
-                */}
-                <p>
-                  {description}
-                </p>
-                <Button
-                  className="snipcart-add-item"
-                  data-item-id={id}
-                  data-item-name={title}
-                  data-item-price={price}
-                  data-item-url={"localhost:8000/"}
-                  data-item-description="todo">
-                  Buy Now
-                </Button>
-              </Grid>
-
-              {/*todo add related products, categories, tags, reviews*/}
+                  <Box display={'inline-flex'}>
+                    {images && images.map((image, i) => {
+                      return (
+                        <Thumbnail m={1/4} width={1} onClick={() => setSelectedImage(image)}  display={'inline-block'} >
+                          <Img imageInfo={image} />
+                        </Thumbnail>
+                      )
+                    })}
+                  </Box>
+                </Box>
             </Grid>
-            </Paper>
-            {/*{tags && tags.length ? (*/}
-              {/*<div style={{ marginTop: `4rem` }}>*/}
-                {/*<h4>Tags</h4>*/}
-                {/*<ul className="taglist">*/}
-                  {/*{tags.map(tag => (*/}
-                    {/*<li key={tag + `tag`}>*/}
-                      {/*<Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>*/}
-                    {/*</li>*/}
-                  {/*))}*/}
-                {/*</ul>*/}
-              {/*</div>*/}
-            {/*) : null}*/}
-    </section>
+            <Grid item xs={12} md={6}>
+
+                  <h1>{title}</h1>
+                  {/*
+                            variant options
+                            price datas for variant
+                          */}
+                  <p>
+                    {description}
+                  </p>
+                  <Button
+                    className="snipcart-add-item"
+                    data-item-id={id}
+                    data-item-name={title}
+                    data-item-price={price}
+                    data-item-url={"localhost:8000/"}
+                    data-item-description="todo">
+                    Buy Now
+                  </Button>
+            </Grid>
+
+
+              </Grid>
   )
 }
 
@@ -168,7 +177,7 @@ export const pageQuery = graphql`
         }
         images {
           childImageSharp{
-            fluid {
+            fluid(maxHeight: 320) {
               ...GatsbyImageSharpFluid
             }
           }
