@@ -191,3 +191,54 @@ export const pageQuery = graphql`
     }
   }
 `
+
+/*  all products
+{allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/products/"} }) {
+  edges {
+    node {
+      id
+      frontmatter {
+        title
+        description
+        tags
+
+        featuredimage{
+          childImageSharp{
+            fluid {
+              src
+            }
+          }
+        }
+
+        variants {
+          skuAttr
+          pricing
+          discount
+        }
+        options {
+          title
+          options {
+            optionId
+            text
+            src {
+              id
+              childImageSharp{
+                fluid {
+                  src
+                }
+              }
+            }
+          }
+        }
+        images {
+          childImageSharp{
+            fluid {
+              src
+            }
+          }
+        }
+      }
+    }
+  }
+}}
+* */

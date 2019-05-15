@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
+import styled from 'styled-components'
+import { commonProps } from '../styled'
 
 const PreviewCompatibleImage = ({ imageInfo }) => {
   const imageStyle = { borderRadius: '5px' }
@@ -31,4 +33,7 @@ PreviewCompatibleImage.propTypes = {
   }).isRequired,
 }
 
-export default PreviewCompatibleImage
+const PCImage = styled(PreviewCompatibleImage)`
+  ${commonProps}
+`
+export default PCImage

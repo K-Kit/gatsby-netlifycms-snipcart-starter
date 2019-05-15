@@ -4,6 +4,8 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import './all.sass'
 import useSiteMetadata from './SiteMetadata'
+import {Box, commonProps} from "../styled";
+import styled from 'styled-components';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
@@ -45,10 +47,16 @@ const TemplateWrapper = ({ children }) => {
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
       <Navbar />
-      <div>{children}</div>
+      <Box display={'flex'} justifyContent={'center'} >
+        <Box width={[1,1,3/4,2/3]} justifyContent={'center'} display={'flex'}>
+          {children}
+        </Box>
+      </Box>
       <Footer />
     </div>
   )
 }
-
-export default TemplateWrapper
+export const Layout = styled(TemplateWrapper)`
+  ${commonProps}
+`
+export default Layout

@@ -1,100 +1,128 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { kebabCase } from 'lodash'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
-import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Img from '../components/PreviewCompatibleImage'
-import {Grid} from '@material-ui/core'
-import Button from "@material-ui/core/Button/Button";
-import styled from "styled-components"
-import Paper from "@material-ui/core/Paper/Paper";
-import {
-  space,
-  color,
-  width,
-  fontSize,
-  display,
-  flex
-} from 'styled-system'
+import { Grid } from '@material-ui/core'
+import Button from '@material-ui/core/Button/Button'
+import Paper from '@material-ui/core/Paper/Paper'
+import styled from 'styled-components'
+import { Box, Thumbnail, commonProps } from '../styled'
+import Layout from '../components/Layout'
+import css from '@styled-system/css'
 
-
-const Box = styled.div`
-  ${color}
-  ${width}
-  ${display}
-  ${flex}
-  justify-content: center;
-
-`;
-const Thumbnail = styled.a`
-${width};
-  width: 56px;
-  justify-content: center;
+const FeaturedImage = styled(Img)`
+  max-width: 360px;
 `
-export const ProductTemplate = (
-  {
-    id,
-    title,
-    description,
-    tags,
-    featuredimage,
-    variants,
-    options,
-    images,
-    helmet,
-    selectedImage, setSelectedImage
-  }) => {
-  let price = 99.99
+
+const ProductDescription = styled(Box)`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Raleway', serif;
+    text-transform: uppercase;
+    color: #292929;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  text-align: center;
+`
+
+export const Gallery = ({
+  images,
+  selectedImage,
+  setSelectedImage,
+  productPage = true,
+}) => {
+  const galleryWidth = productPage === true ? [1, 2 / 3, 1 / 2] : 1;
   return (
-    <Grid container>
-      {helmet || ''}
-            {/*<PostContent content={content} />*/}
-            <Grid item xs={12} md={6} spacing={24}>
-                <Box bg={"red"}
-                     width={[1,1,1, 1/2]}
-                     display={"inline-block"}
+    <Box
+      width={galleryWidth}
+      display={'inline-flex'}
+      justifyContent="center"
+      alignContent={'center'}
+      flexDirection={'column'}
+    >
+      <Box width={[1]}>
+        {images && images.length && <FeaturedImage imageInfo={selectedImage} />}
+      </Box>
 
-                >
-                  <Box m={2} >
-                    {images && images.length && <Img imageInfo={selectedImage} />}
-                  </Box>
-                  {/* todo add select on hover */}
-                  <Box display={'inline-flex'}>
-                    {images && images.map((image, i) => {
-                      return (
-                        <Thumbnail m={1/4} width={1} onClick={() => setSelectedImage(image)}  display={'inline-block'} >
-                          <Img imageInfo={image} />
-                        </Thumbnail>
-                      )
-                    })}
-                  </Box>
-                </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
+      {/* todo add select on hover */}
+      <Box width={[1]} display={'flex'}>
+        {images &&
+          images.map((image, i) => {
+            return (
+              <Thumbnail
+                border={'2px groove'}
+                m={1 / 4}
+                p={2}
+                width={1}
+                onClick={() => setSelectedImage(image)}
+                display={'inline-block'}
+              >
+                <Img imageInfo={image} />
+              </Thumbnail>
+            )
+          })}
+      </Box>
+    </Box>
+  )
+}
 
-                  <h1>{title}</h1>
-                  {/*
+export const ProductTemplate = ({
+  id,
+  title,
+  description,
+  tags,
+  featuredimage,
+  variants,
+  options,
+  images,
+  helmet,
+  selectedImage,
+  setSelectedImage,
+}) => {
+  let price = 99.99
+  console.log(variants, options)
+  return (
+      <Box
+        width={[1]}
+        justifyContent={'center'}
+        justifySelf={'center'}
+      >
+        {helmet || ''}
+        {/*<PostContent content={content} />*/}
+        <Gallery
+          images={images}
+          setSelectedImage={setSelectedImage}
+          selectedImage={selectedImage}
+        />
+
+        <ProductDescription width={[1, 1 / 2]}>
+          <h1>{title}</h1>
+          {/*
                             variant options
                             price datas for variant
                           */}
-                  <p>
-                    {description}
-                  </p>
-                  <Button
-                    className="snipcart-add-item"
-                    data-item-id={id}
-                    data-item-name={title}
-                    data-item-price={price}
-                    data-item-url={"localhost:8000/"}
-                    data-item-description="todo">
-                    Buy Now
-                  </Button>
-            </Grid>
-
-
-              </Grid>
+          <p>{description}</p>
+          <Button
+            className="snipcart-add-item"
+            data-item-id={id}
+            data-item-name={title}
+            data-item-price={price}
+            data-item-url={'localhost:8000/'}
+            data-item-description="todo"
+          >
+            Buy Now
+          </Button>
+        </ProductDescription>
+      </Box>
   )
 }
 
@@ -109,7 +137,7 @@ const Product = ({ data }) => {
   const { markdownRemark: post } = data
   const item = post.frontmatter
 
-  const [selectedImage, setSelectedImage] = useState(item.images[0]);
+  const [selectedImage, setSelectedImage] = useState(item.images[0])
   return (
     <Layout>
       <ProductTemplate
@@ -118,10 +146,7 @@ const Product = ({ data }) => {
         helmet={
           <Helmet titleTemplate="%s | Blog">
             <title>{`${item.title}`}</title>
-            <meta
-              name="description"
-              content={`${item.description}`}
-            />
+            <meta name="description" content={`${item.description}`} />
           </Helmet>
         }
         {...item}
@@ -147,8 +172,8 @@ export const pageQuery = graphql`
         description
         tags
 
-        featuredimage{
-          childImageSharp{
+        featuredimage {
+          childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
             }
@@ -167,7 +192,7 @@ export const pageQuery = graphql`
             text
             src {
               id
-              childImageSharp{
+              childImageSharp {
                 fluid {
                   ...GatsbyImageSharpFluid
                 }
@@ -176,8 +201,8 @@ export const pageQuery = graphql`
           }
         }
         images {
-          childImageSharp{
-            fluid(maxHeight: 320) {
+          childImageSharp {
+            fluid(maxHeight: 360, maxWidth: 360) {
               ...GatsbyImageSharpFluid
             }
           }

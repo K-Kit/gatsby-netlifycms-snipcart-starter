@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function HTML(props) {
   return (
@@ -12,11 +12,19 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" />
 
-        <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="YTJhODQ0ZmQtZWQxZi00ZjUxLTg1MWItOTMyMDAzZDQ0MzMzNjM2OTA2OTkzMDk5MTg4NTA5"></script>
+        <script
+          src="https://cdn.snipcart.com/scripts/2.0/snipcart.js"
+          id="snipcart"
+          data-api-key="YTJhODQ0ZmQtZWQxZi00ZjUxLTg1MWItOTMyMDAzZDQ0MzMzNjM2OTA2OTkzMDk5MTg4NTA5"
+        />
 
-        <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" type="text/css" rel="stylesheet" />
+        <link
+          href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css"
+          type="text/css"
+          rel="stylesheet"
+        />
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}

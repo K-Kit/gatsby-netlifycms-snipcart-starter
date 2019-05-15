@@ -5,13 +5,14 @@ import { BlogPostTemplate } from '../../templates/blog-post'
 const BlogPostPreview = ({ entry, widgetFor }) => {
   console.log(entry)
   return (
-  <BlogPostTemplate
-    content={widgetFor('body')}
-    description={entry.getIn(['data', 'description'])}
-    tags={entry.getIn(['data', 'tags'])}
-    title={entry.getIn(['data', 'title'])}
-  />
-)}
+    <BlogPostTemplate
+      content={widgetFor('body')}
+      description={entry.getIn(['data', 'description'])}
+      tags={entry.getIn(['data', 'tags'])}
+      title={entry.getIn(['data', 'title'])}
+    />
+  )
+}
 
 BlogPostPreview.propTypes = {
   entry: PropTypes.shape({

@@ -5,6 +5,8 @@
   "author": "Austin Green",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "@material-ui/system": "latest",
+    "@styled-system/css": "^2.0.2",
     "bulma": "^0.7.0",
     "gatsby": "^2.1.34",
     "gatsby-image": "^2.0.23",
@@ -25,14 +27,15 @@
     "netlify-cms": "^2.9.1",
     "node-sass": "^4.11.0",
     "parcel-bundler": "^1.9.4",
+    "polished": "^3.3.0",
     "prop-types": "^15.6.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
     "styled-components": "^4.2.0",
     "styled-system": "^4.2.2",
-    "uuid": "^3.2.1",
-    "@material-ui/system": "latest"
+    "styled-theming": "^2.2.0",
+    "uuid": "^3.2.1"
   },
   "keywords": [
     "gatsby"
