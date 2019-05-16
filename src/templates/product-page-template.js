@@ -33,8 +33,8 @@ const ProductDescription = styled(Box)`
     color: #292929;
   }
   h1 {
-    font-size: 1.5em;
-    margin-bottom: 16;
+    font-size: 1.2em;
+    margin-bottom: 16px;
   }
   text-align: center;
 `
@@ -97,14 +97,14 @@ export const ProductTemplate = ({
   return (
       <Box
         width={[1]}
+        display={['flex']}
+        p={8}
+        flexDirection={['column', 'column', 'row']}
         justifyContent={'center'}
-        justifySelf={'center'}
-        display={'block'}
-        p={[16,32]}
       >
         {helmet || ''}
         {/*<PostContent content={content} />*/}
-        <Box width={[1,1/2,1/3,1/4]} mb={[8,16]} mt={[8,16]}>
+        <Box width={[1,1,1/3,1/4]} mb={[8,16]} mt={[8,16]} display={'flex'}>
           <Gallery
             images={images}
             setSelectedImage={setSelectedImage}
@@ -112,7 +112,7 @@ export const ProductTemplate = ({
           />
         </Box>
 
-        <ProductDescription mt={8} width={[1, 1 / 2]}>
+        <ProductDescription mt={8} width={[1,1,1/2]} minWidth={'300px'}>
           <h1>{title}</h1>
           {/*
                             variant options

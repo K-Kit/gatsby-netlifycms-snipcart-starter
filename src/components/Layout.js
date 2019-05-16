@@ -48,7 +48,7 @@ const TemplateWrapper = ({ children }) => {
       </Helmet>
       <Navbar />
       <Box display={'flex'} justifyContent={'center'} >
-        <Box width={[1,1,3/4,2/3]} justifyContent={'center'} display={'flex'}>
+        <Box width={[1,1,3/4,2/3]} justifyContent={'center'} display={'block'}>
           {children}
         </Box>
       </Box>
