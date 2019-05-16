@@ -50,7 +50,7 @@ export const pageQuery = graphql`
           title
           description
           tags
-          featuredImage {
+          featuredimage {
             childImageSharp {
               fluid {
                 ...GatsbyImageSharpFluid
