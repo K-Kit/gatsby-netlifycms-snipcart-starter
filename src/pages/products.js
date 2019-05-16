@@ -6,7 +6,6 @@ import Img from '../components/PreviewCompatibleImage'
 import { Gallery } from '../templates/product-page-template'
 
 const Page = ({ data }) => {
-  console.log(data)
   const products = data.allMarkdownRemark.edges
   // allMarkdownRemark:
   // edges: Array(12)

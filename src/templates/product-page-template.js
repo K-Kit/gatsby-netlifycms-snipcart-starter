@@ -89,7 +89,6 @@ export const ProductTemplate = ({
   setSelectedImage,
   price
 }) => {
-  console.log(variants, options)
   return (
       <Box
         width={[1]}
