@@ -166,7 +166,9 @@ export default ProductPageTemplate
 export const pageQuery = graphql`
   query ProductById($id: String!) {
     markdownRemark(id: { eq: $id }) {
-      ...productMatter
+      frontmatter {
+          ...productMatter
+        }
     }
   }
 `
