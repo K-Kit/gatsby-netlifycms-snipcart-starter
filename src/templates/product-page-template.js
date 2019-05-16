@@ -80,7 +80,7 @@ export const ProductTemplate = ({
   title,
   description,
   tags,
-  featuredimage,
+  featuredImage,
   variants,
   options,
   images,
@@ -166,48 +166,7 @@ export default ProductPageTemplate
 export const pageQuery = graphql`
   query ProductById($id: String!) {
     markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        id
-        title
-        description
-        tags
-
-        featuredImage {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-
-        variants {
-          skuAttr
-          pricing
-          discount
-        }
-        options {
-          title
-          options {
-            optionId
-            text
-            src {
-              id
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-        images {
-          childImageSharp {
-            fluid(maxHeight: 360, maxWidth: 360) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
+      ...productMatter
     }
   }
 `
