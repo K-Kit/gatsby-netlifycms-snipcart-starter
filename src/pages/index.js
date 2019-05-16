@@ -23,7 +23,7 @@ const Page = ({ data }) => {
             frontmatter.images[0]
           )
           return (
-            <Box width={[1,1/2,1/2,1/2]} height={'fit-content'} display={'flex'} p={10} justifyContent={'center'} border={'2px solid black'} flexDirection={'column'}>
+            <Box width={[1,1/2,1/3,1/4]} height={'fit-content'} display={'flex'} p={10} justifyContent={'center'} flexDirection={'column'}>
 
               <Link to={`/products/${frontmatter.id}`}>
                 <h1>{frontmatter.title}</h1>
