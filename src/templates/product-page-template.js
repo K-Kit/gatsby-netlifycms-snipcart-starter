@@ -99,13 +99,13 @@ export const ProductTemplate = ({
       <Box
         width={[1]}
         display={['flex']}
-        p={8}
+        mt={[16,32]}
         flexDirection={['column', 'column', 'row']}
         justifyContent={'center'}
       >
         {helmet || ''}
         {/*<PostContent content={content} />*/}
-        <Box width={[1,1,1/3,1/4]} mb={[8,16]} mt={[8,16]} display={'flex'}>
+        <Box width={[1,1,1/2]} mb={[8,16]} mt={[8,16]} display={'flex'} justifyContent={'center'}>
           <Gallery
             images={images}
             setSelectedImage={setSelectedImage}
@@ -113,7 +113,7 @@ export const ProductTemplate = ({
           />
         </Box>
 
-        <ProductDescription mt={8} width={[1,1,1/2]} minWidth={'300px'}>
+        <ProductDescription width={[1,1,1/2]} minWidth={'300px'}>
           <h1>{title}</h1>
           {/*
                             variant options
