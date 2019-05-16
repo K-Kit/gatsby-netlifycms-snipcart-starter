@@ -72,7 +72,6 @@ let save = id => {
               let path = `${data.productId}_${attributeType.title}_${i}_${j}.${ext}`
               download(attribute.src, imageDir + path)
               data.attributes[i].options[j].src = `../../../static/img/${path}`
-              images.push(`../../../static/img/${path}`)
             }
           })
         })

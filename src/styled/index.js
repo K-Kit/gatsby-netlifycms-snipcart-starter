@@ -90,3 +90,7 @@ export const Thumbnail = styled.a`
   width: 56px;
   justify-content: center;
 `
+
+export const Button = styled.button`
+${commonProps} 
+`

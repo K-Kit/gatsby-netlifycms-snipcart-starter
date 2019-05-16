@@ -6,16 +6,20 @@ import { graphql, Link } from 'gatsby'
 import Content, { HTMLContent } from '../components/Content'
 import Img from '../components/PreviewCompatibleImage'
 import { Grid } from '@material-ui/core'
-import Button from '@material-ui/core/Button/Button'
 import Paper from '@material-ui/core/Paper/Paper'
 import styled from 'styled-components'
-import { Box, Thumbnail, commonProps } from '../styled'
+import { Box, Thumbnail, commonProps, Button } from '../styled'
 import Layout from '../components/Layout'
 import css from '@styled-system/css'
 
 const FeaturedImage = styled(Img)`
   max-width: 360px;
 `
+
+const ThumbNailImage = styled(Img)`
+  width: 48px;
+`
+
 
 const ProductDescription = styled(Box)`
   h1,
@@ -30,6 +34,7 @@ const ProductDescription = styled(Box)`
   }
   h1 {
     font-size: 1.5em;
+    margin-bottom: 16;
   }
   text-align: center;
 `
@@ -44,7 +49,7 @@ export const Gallery = ({
   return (
     <Box
       width={galleryWidth}
-      display={'inline-flex'}
+      display={'flex'}
       justifyContent="center"
       alignContent={'center'}
       flexDirection={'column'}
@@ -66,7 +71,7 @@ export const Gallery = ({
                 onClick={() => setSelectedImage(image)}
                 display={'inline-block'}
               >
-                <Img imageInfo={image} />
+                <ThumbNailImage imageInfo={image} />
               </Thumbnail>
             )
           })}
@@ -94,32 +99,38 @@ export const ProductTemplate = ({
         width={[1]}
         justifyContent={'center'}
         justifySelf={'center'}
-        display={'flex'}
+        display={'block'}
+        p={[16,32]}
       >
         {helmet || ''}
         {/*<PostContent content={content} />*/}
-        <Gallery
-          images={images}
-          setSelectedImage={setSelectedImage}
-          selectedImage={selectedImage}
-        />
+        <Box width={[1,1/2,1/3,1/4]} mb={[8,16]} mt={[8,16]}>
+          <Gallery
+            images={images}
+            setSelectedImage={setSelectedImage}
+            selectedImage={selectedImage}
+          />
+        </Box>
 
-        <ProductDescription width={[1 / 2]}>
+        <ProductDescription mt={8} width={[1, 1 / 2]}>
           <h1>{title}</h1>
           {/*
                             variant options
                             price datas for variant
                           */}
           <p>{description}</p>
+          <br/>
+
           <Button
             className="snipcart-add-item"
             data-item-id={id}
             data-item-name={title}
-            data-item-price={price || 99.99}
+            data-item-price={price}
             data-item-url={`https://cms-snipcart.netlify.com/products/${id}`}
             data-item-description={description}
+            bg={'success'}
           >
-            Buy Now
+            ${price.toFixed(2)} Add to cart
           </Button>
         </ProductDescription>
       </Box>

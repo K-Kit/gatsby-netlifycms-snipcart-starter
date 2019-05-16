@@ -7,7 +7,7 @@ const theme = {
   colors: {
     blue: '#07c',
     tomato: 'tomato',
-    purple: 'purple',
+    success: 'lightgreen',
     primary: 'red',
   },
 }
