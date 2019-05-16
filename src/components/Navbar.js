@@ -83,7 +83,7 @@ const Navbar = class extends React.Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                
+
               </a>
             </div>
           </div>
