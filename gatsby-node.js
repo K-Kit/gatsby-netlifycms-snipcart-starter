@@ -74,8 +74,21 @@ exports.createPages = ({ actions, graphql }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode });
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
+  }
+
   const { frontmatter } = node;
+
+  frontmatter && console.log(frontmatter.featuredImage)
   fmImagesToRelative(node);
+  frontmatter && console.log(frontmatter.featuredImage)
   // if (frontmatter) {
   //   const { featuredImage, images } = frontmatter
   //   if (featuredImage) {
@@ -98,13 +111,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   //   })
   // }
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+
 };
 

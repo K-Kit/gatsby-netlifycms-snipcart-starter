@@ -53,6 +53,7 @@ module.exports = {
               destinationDir: 'static',
             },
           },
+
         ],
       },
     },
