@@ -94,6 +94,7 @@ export const ProductTemplate = ({
   setSelectedImage,
   price
 }) => {
+  price = price || 99.99
   return (
       <Box
         width={[1]}
