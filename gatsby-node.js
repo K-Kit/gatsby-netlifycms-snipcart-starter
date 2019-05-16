@@ -73,16 +73,38 @@ exports.createPages = ({ actions, graphql }) => {
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  fmImagesToRelative(node) // convert image paths for gatsby images
+  const { createNodeField } = actions;
+  const { frontmatter } = node;
+  fmImagesToRelative(node);
+  // if (frontmatter) {
+  //   const { featuredImage, images } = frontmatter
+  //   if (featuredImage) {
+  //     if (featuredImage.indexOf('/img') === 0) {
+  //       frontmatter.featuredImage = path.relative(
+  //         path.dirname(node.fileAbsolutePath),
+  //         path.join(__dirname, '/static/', featuredImage)
+  //       )
+  //     }
+  //   }
+  //
+  //   console.log(node.frontmatter.featuredImage)
+  //   images && images.length && images.map((image,i) => {
+  //     if (image.indexOf('/img') === 0) {
+  //       frontmatter.images[i] = path.relative(
+  //         path.dirname(node.fileAbsolutePath),
+  //         path.join(__dirname, '/static/img', image)
+  //       )
+  //     }
+  //   })
+  // }
 
   if (node.internal.type === `MarkdownRemark`) {
-    console.log(node.frontmatter.featuredimage, node.frontmatter.id, node.frontmatter.title)
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
       node,
       value,
     })
   }
-}
+};
+

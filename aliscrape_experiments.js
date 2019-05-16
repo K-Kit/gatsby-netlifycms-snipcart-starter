@@ -93,7 +93,7 @@ let save = id => {
         // for attribute in attributes create list grid, filter other attributes by variant where
         let prod = {
           templateKey: 'product-page-template',
-          featuredimage: images.filter(item => (item !== null))[0],
+          featuredImage: images.filter(item => (item !== null))[0],
           price: getScaledPrice(data.variations, 0.2),
           id:data.productId,
           title:data.productTitle,
