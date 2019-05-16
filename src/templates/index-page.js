@@ -4,7 +4,6 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Features from '../components/Features'
-import BlogRoll from '../components/BlogRoll'
 
 export const IndexPageTemplate = ({
   image,
@@ -98,7 +97,6 @@ export const IndexPageTemplate = ({
                   <h3 className="has-text-weight-semibold is-size-2">
                     Latest stories
                   </h3>
-                  <BlogRoll />
                   <div className="column is-12 has-text-centered">
                     <Link className="btn" to="/blog">
                       Read more
@@ -154,43 +152,38 @@ IndexPage.propTypes = {
 
 export default IndexPage
 
-export const pageQuery = graphql`
-  query IndexPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
-      frontmatter {
-        title
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        heading
-        subheading
-        mainpitch {
-          title
-          description
-        }
-        description
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 240, quality: 64) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            text
-          }
-          heading
-          description
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//
+//   query IndexPageTemplate {
+//     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+//       frontmatter {
+//         title
+//
+//         heading
+//         subheading
+//         mainpitch {
+//           title
+//           description
+//         }
+//         description
+//         intro {
+//           blurbs {
+//             image {
+//               childImageSharp {
+//                 fluid(maxWidth: 240, quality: 64) {
+//                   ...GatsbyImageSharpFluid
+//                 }
+//               }
+//             }
+//             text
+//           }
+//           heading
+//           description
+//         }
+//       }
+//     }
+//   }
+// `
 
 /*  all products
 {allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/products/"} }) {

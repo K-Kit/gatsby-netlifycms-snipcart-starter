@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby'
 import { Box, Thumbnail, commonProps } from '../styled'
 import Layout from '../components/Layout'
 import Img from '../components/PreviewCompatibleImage'
-import { Gallery } from '../templates/product'
+import { Gallery } from '../templates/product-page-template'
 
 const Page = ({ data }) => {
   console.log(data)
@@ -17,23 +17,25 @@ const Page = ({ data }) => {
 
   return (
     <Layout>
-      <Box mt={20} width={1} display={'flex'} flexDirection={'column'}>
+      <Box mt={20} width={1} display={'flex'} flexWrap={'wrap'} alightContent={'stretch'} alignItems={'stretch'}>
         {products.map(edge => {
           const { frontmatter } = edge.node
           const [selectedImage, setSelectedImage] = useState(
             frontmatter.images[0]
           )
           return (
-            <Box>
+            <Box width={[1,1/2,1/2,1/2]} height={'fit-content'} display={'flex'} p={10} justifyContent={'center'} border={'2px solid black'} flexDirection={'column'}>
+
+              <Link to={`/products/${frontmatter.id}`}>
+                <h1>{frontmatter.title}</h1>
+              </Link>
               <Gallery
                 images={frontmatter.images}
                 setSelectedImage={setSelectedImage}
                 selectedImage={selectedImage}
                 productPage={false}
               />
-              <Link to={`/products/${frontmatter.id}`}>
-                <h1>{frontmatter.title}</h1>
-              </Link>
+
             </Box>
           )
         })}
@@ -44,55 +46,57 @@ const Page = ({ data }) => {
 export default Page
 
 export const pageQuery = graphql`
-  {
-    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/products/" } }) {
-      edges {
-        node {
+  fragment productMatter on MarkdownRemarkFrontmatter {
           id
-          frontmatter {
-            id
-            title
-            description
-            tags
-
-            featuredimage {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+          title
+          description
+          tags
+          featuredImage {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
-
-            variants {
-              skuAttr
-              pricing
-              discount
-            }
+          }
+          variants {
+            skuAttr
+            pricing
+            discount
+          }
+          options {
+            title
             options {
-              title
-              options {
-                optionId
-                text
-                src {
-                  id
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid
-                    }
+              optionId
+              text
+              src {
+                id
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
             }
-            images {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+          }
+          images {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
           }
         }
+
+query {
+  allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/products/"}}) {
+    edges {
+      node {
+        id
+        frontmatter {
+          ...productMatter
+        }
       }
     }
   }
+}
 `

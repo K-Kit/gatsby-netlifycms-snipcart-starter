@@ -49,12 +49,12 @@ export const Gallery = ({
       alignContent={'center'}
       flexDirection={'column'}
     >
-      <Box width={[1]}>
+      <Box>
         {images && images.length && <FeaturedImage imageInfo={selectedImage} />}
       </Box>
 
       {/* todo add select on hover */}
-      <Box width={[1]} display={'flex'}>
+      <Box width={[1]} height={1} display={'flex'}>
         {images &&
           images.map((image, i) => {
             return (
@@ -87,14 +87,15 @@ export const ProductTemplate = ({
   helmet,
   selectedImage,
   setSelectedImage,
+  price
 }) => {
-  let price = 99.99
   console.log(variants, options)
   return (
       <Box
         width={[1]}
         justifyContent={'center'}
         justifySelf={'center'}
+        display={'flex'}
       >
         {helmet || ''}
         {/*<PostContent content={content} />*/}
@@ -104,7 +105,7 @@ export const ProductTemplate = ({
           selectedImage={selectedImage}
         />
 
-        <ProductDescription width={[1, 1 / 2]}>
+        <ProductDescription width={[1 / 2]}>
           <h1>{title}</h1>
           {/*
                             variant options
@@ -115,9 +116,9 @@ export const ProductTemplate = ({
             className="snipcart-add-item"
             data-item-id={id}
             data-item-name={title}
-            data-item-price={price}
-            data-item-url={'localhost:8000/'}
-            data-item-description="todo"
+            data-item-price={price || 99.99}
+            data-item-url={`https://cms-snipcart.netlify.com/products/${id}`}
+            data-item-description={description}
           >
             Buy Now
           </Button>
@@ -133,7 +134,7 @@ ProductTemplate.propTypes = {
   helmet: PropTypes.object,
 }
 
-const Product = ({ data }) => {
+const ProductPageTemplate = ({ data }) => {
   const { markdownRemark: post } = data
   const item = post.frontmatter
 
@@ -155,13 +156,13 @@ const Product = ({ data }) => {
   )
 }
 
-Product.propTypes = {
+ProductPageTemplate.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
   }),
 }
 
-export default Product
+export default ProductPageTemplate
 
 export const pageQuery = graphql`
   query ProductById($id: String!) {
@@ -172,7 +173,7 @@ export const pageQuery = graphql`
         description
         tags
 
-        featuredimage {
+        featuredImage {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid

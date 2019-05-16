@@ -14,6 +14,7 @@ import {
   justifySelf,
   background,
   flexDirection,
+  flexWrap,
   size,
   height,
   compose,
@@ -59,6 +60,7 @@ export const commonProps = compose(
   padding,
   border,
   flexDirection,
+  flexWrap,
   height,
   maxWidth,
   maxHeight,
@@ -77,7 +79,8 @@ ${gridProps}
 `
 
 export const Box = styled.div`
-  ${commonProps}
+  ${commonProps} 
+  height: fit-content
 `
 
 

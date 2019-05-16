@@ -3,7 +3,6 @@ import CMS from 'netlify-cms'
 import '@material-ui/core'
 
 import AboutPagePreview from './preview-templates/AboutPagePreview'
-import BlogPostPreview from './preview-templates/BlogPostPreview'
 import IndexPagePreview from './preview-templates/IndexPagePreview'
 import ProductPreview from './preview-templates/ProductPreview'
 import { StyleSheetManager } from 'styled-components'
@@ -50,5 +49,4 @@ CMS.registerPreviewTemplate('index', props => (
   </CSSInjector>
 ))
 CMS.registerPreviewTemplate('about', props => Wrapped(AboutPagePreview, props))
-CMS.registerPreviewTemplate('blog', props => Wrapped(BlogPostPreview, props))
 CMS.registerPreviewTemplate('products', props => Wrapped(ProductPreview, props))

@@ -1,4 +1,4 @@
-import { ProductTemplate } from '../../templates/product'
+import { ProductTemplate } from '../../templates/product-page-template'
 import React, { useState } from 'react'
 import { HTMLContent } from '../../components/Content'
 import Helmet from 'react-helmet'
