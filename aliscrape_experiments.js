@@ -7,34 +7,7 @@ const fs = require('fs'),
   yaml = require('js-yaml'),
   request = require('request');
 
-const product = ({
-                   id=null,
-                   title='',
-                   description ='',
-                   images=[],
-                   pricing={
-                     price: null,
-                     compareAt: null,
-                     cost: null,
-                     taxed: true,
-                   },
-                   variants=null,
-                   tags=[],
-                   meta=null
-                 }) => {
 
-  return (
-    {
-      id: id,
-      title: title,
-      description: description,
-      images: images,
-      pricing: pricing,
-      variants: variants,
-      tags: tags,
-      meta: meta
-    })
-}
 
 
 const download = (uri, filename, callback) => {
@@ -86,7 +59,7 @@ let save = id => {
         data.pics.forEach((pic, i) => {
           let path = `${data.productId}_${i}${pic.split('/')[pic.split('/').length-1]}`
           download(pic, imageDir + path)
-          images.push(`../../../img/${path}`)
+          images.push(`/${imageDir}${path}`)
         })
 
         // variant images
@@ -98,8 +71,8 @@ let save = id => {
               let ext = pathsplit[pathsplit.length-1]
               let path = `${data.productId}_${attributeType.title}_${i}_${j}.${ext}`
               download(attribute.src, imageDir + path)
-              data.attributes[i].options[j].src = `../../../img/${path}`
-              images.push(`../../../img/${path}`)
+              data.attributes[i].options[j].src = `/${imageDir}${path}`
+              images.push(`/${imageDir}${path}`)
             }
           })
         })
@@ -128,7 +101,8 @@ let save = id => {
           options: data.attributes,
           variants: data.variations,
           tags: getTags(),
-          meta: {}
+          meta: {},
+          description: ''
         }
         console.log('featured', images.filter(item => (item !== null))[0])
         yamldata = yaml.load(JSON.stringify(prod))
