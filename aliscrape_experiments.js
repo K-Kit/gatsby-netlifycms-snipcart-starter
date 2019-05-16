@@ -86,7 +86,7 @@ let save = id => {
         data.pics.forEach((pic, i) => {
           let path = `${data.productId}_${i}${pic.split('/')[pic.split('/').length-1]}`
           download(pic, imageDir + path)
-          images.push(`/img/${path}`)
+          images.push(`../../../img/${path}`)
         })
 
         // variant images
@@ -98,8 +98,8 @@ let save = id => {
               let ext = pathsplit[pathsplit.length-1]
               let path = `${data.productId}_${attributeType.title}_${i}_${j}.${ext}`
               download(attribute.src, imageDir + path)
-              data.attributes[i].options[j].src = `/img/${path}`
-              images.push(`/img/${path}`)
+              data.attributes[i].options[j].src = `../../../img/${path}`
+              images.push(`../../../img/${path}`)
             }
           })
         })
