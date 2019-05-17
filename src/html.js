@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {config} from './config'
 
 export default function HTML(props) {
   return (
@@ -17,7 +18,7 @@ export default function HTML(props) {
         <script
           src="https://cdn.snipcart.com/scripts/2.0/snipcart.js"
           id="snipcart"
-          data-api-key="YTJhODQ0ZmQtZWQxZi00ZjUxLTg1MWItOTMyMDAzZDQ0MzMzNjM2OTA2OTkzMDk5MTg4NTA5"
+          data-api-key={config.snipcartPublicKey}
         />
 
         <link
