@@ -34,6 +34,9 @@ PreviewCompatibleImage.propTypes = {
 }
 
 const PCImage = styled(PreviewCompatibleImage)`
-  ${commonProps}
+  ${commonProps};
+  width: 80px;
 `
+
+export const Thumbnail = props => <PCImage width={[48,56,64,"80px"]} height={[48,56,64,80]} {...props} />
 export default PCImage
