@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import { Box, Thumbnail, commonProps, Button } from '../styled'
 import Layout from '../components/Layout'
 import css from '@styled-system/css'
+import VariantSelectControl from "../components/VariantSelectControl";
 
 const FeaturedImage = styled(Img)`
   max-width: 360px;
@@ -94,7 +95,7 @@ export const ProductTemplate = ({
   setSelectedImage,
   price
 }) => {
-  price = price || 99.99
+  const [priceState, setPrice] = useState(price || 99.99)
   return (
       <Box
         width={[1]}
@@ -119,6 +120,13 @@ export const ProductTemplate = ({
                             variant options
                             price datas for variant
                           */}
+          <h4>Options:</h4>
+          <VariantSelectControl product={{
+            variants,
+            options,
+            setSelectedImage: setSelectedImage,
+            setPrice: setPrice
+          }}/>
           <p>{description}</p>
           <br/>
 
