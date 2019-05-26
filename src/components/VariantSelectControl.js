@@ -12,7 +12,7 @@ font-size: 8px;
 
 const getViableVariants = (variants, optionId, shippingId) => {
   return (
-    variants.filter(variant => variant.combinedAttributes.includes(optionId) &&  variant.combinedAttributes.includes(shippingId))
+    variants.filter(variant => variant.combinedAttributes.includes(optionId) &&  variant.combinedAttributes.includes(shippingId || 1))
   )
 }
 
@@ -20,7 +20,8 @@ const getViableVariants = (variants, optionId, shippingId) => {
 // accepts product frontmatter
 const VariantSelectControl = ({product}) => {
   const {variants, options, setPrice, setSelectedImage} = product;
-  const china = options.filter(optionType => optionType.title == "Ships From")[0]
+  const filteredCountries = options.filter(optionType => optionType.title == "Ships From")[0]
+  const china = filteredCountries && filteredCountries
     .options.filter(op => op.text === "China")[0].optionId || '';
   const [shipId, setShipId] = useState(china);
 
