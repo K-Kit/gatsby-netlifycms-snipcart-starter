@@ -21,7 +21,7 @@ const getViableVariants = (variants, optionId, shippingId) => {
 const VariantSelectControl = ({product}) => {
   const {variants, options, setPrice, setSelectedImage} = product;
   const china = options.filter(optionType => optionType.title == "Ships From")[0]
-    .options.filter(op => op.text === "China")[0].optionId;
+    .options.filter(op => op.text === "China")[0].optionId || '';
   const [shipId, setShipId] = useState(china);
 
   return (
