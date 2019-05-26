@@ -35,10 +35,10 @@ collections:
       - label: options
         name: options
         widget: list
-      fields:
-        - label: optionId
-          name: optionId
-          widget: string
+        fields:
+          - label: optionId
+            name: optionId
+            widget: string
 
           - label: text
             name: text
