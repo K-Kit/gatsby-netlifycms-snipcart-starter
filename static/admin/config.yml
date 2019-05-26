@@ -29,17 +29,24 @@ collections:
     name: options
     widget: list
     fields:
-      - label: optionId
-        name: optionId
+      - label: title
+        name: title
         widget: string
+      - label: options
+        name: options
+        widget: list
+      fields:
+        - label: optionId
+          name: optionId
+          widget: string
 
-      - label: text
-        name: text
-        widget: string
+          - label: text
+            name: text
+            widget: string
 
-      - label: src
-        name: src
-        widget: image
+          - label: src
+            name: src
+            widget: image
 
   - label: "Variants"
     name: "variants"
