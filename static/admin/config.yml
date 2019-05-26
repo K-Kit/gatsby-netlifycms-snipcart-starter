@@ -25,6 +25,22 @@ collections:
     widget: "list"
     field: {label: Image, name: image, widget: image}
     required: false
+  - label: "Options"
+    name: options
+    widget: list
+    fields:
+      - label: optionId
+        name: optionId
+        widget: string
+
+      - label: text
+        name: text
+        widget: string
+
+      - label: src
+        name: src
+        widget: image
+
   - label: "Variants"
     name: "variants"
     widget: "list"
