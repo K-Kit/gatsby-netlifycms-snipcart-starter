@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import { Box, Thumbnail, commonProps, Button } from '../styled'
 import Layout from '../components/Layout'
 import css from '@styled-system/css'
+import VariantSelectControl from "../components/VariantSelectControl";
 
 const FeaturedImage = styled(Img)`
   max-width: 360px;
@@ -94,7 +95,8 @@ export const ProductTemplate = ({
   setSelectedImage,
   price
 }) => {
-  price = price || 99.99
+  const [priceState, setPrice] = useState(price || 99.99)
+  console.log(priceState)
   return (
       <Box
         width={[1]}
@@ -119,6 +121,13 @@ export const ProductTemplate = ({
                             variant options
                             price datas for variant
                           */}
+          <h4>Options:</h4>
+          <VariantSelectControl product={{
+            variants,
+            options,
+            setSelectedImage: setSelectedImage,
+            setPrice: setPrice
+          }}/>
           <p>{description}</p>
           <br/>
 
@@ -126,12 +135,12 @@ export const ProductTemplate = ({
             className="snipcart-add-item"
             data-item-id={id}
             data-item-name={title}
-            data-item-price={price}
+            data-item-price={priceState}
             data-item-url={`https://cms-snipcart.netlify.com/products/${id}`}
             data-item-description={description}
             bg={'success'}
           >
-            ${price.toFixed(2)} Add to cart
+            ${priceState.toFixed(2)} Add to cart
           </Button>
         </ProductDescription>
       </Box>

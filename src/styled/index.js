@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button as ButtonBase} from "@material-ui/core"
 import styled from 'styled-components'
 import {
   space,
@@ -91,6 +92,6 @@ export const Thumbnail = styled.a`
   justify-content: center;
 `
 
-export const Button = styled.button`
+export const Button = styled(ButtonBase)`
 ${commonProps} 
 `
