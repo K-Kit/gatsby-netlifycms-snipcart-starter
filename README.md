@@ -19,4 +19,4 @@ Todo:
 - add blog, tags, categories/collections
 - & more
 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/K-Kit/netlify-cms-snipcart-shop&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
+<a href="https://app.netlify.com/start/deploy?repository=https://github.com/K-Kit/gatsby-netlifycms-snipcart-starter&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
